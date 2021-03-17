@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
 
     [SerializeField] // This means although private, you could still interact with it in unity 
     private float _speed = 5f; // by creating variable "speed" you also have access to it in unity (if public, not now that is private!)
+
+    [SerializeField] // you may see it in the Player "inspector"
+    private GameObject _vaccinePrefab;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +29,23 @@ public class Player : MonoBehaviour
     {
         // calling a method, defined below 
         PlayerMovement();
+        
+        // if button (space bar) pressed
+        // then instantiate vaccine prefab
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("Space bar Pressed!");
+            Instantiate(_vaccinePrefab, transform.position, Quaternion.identity); //Quaternion, we don't care about rotation, just put 0,0,0
+            
+        }
+
+
+
     }
+    
+    
+    
+    
 
     // player movement function 
     void PlayerMovement()
